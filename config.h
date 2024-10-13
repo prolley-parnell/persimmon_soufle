@@ -1,4 +1,4 @@
- /* Copyright 2021 Dane Evans
+ /* Copyright 2024 Persie Rolley-Parnell
   *
   * This program is free software: you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
 //#define USE_MATRIX_I2C
 
 /* Select hand configuration */
-
-///https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 
 #define CUSTOM_FONT
 
