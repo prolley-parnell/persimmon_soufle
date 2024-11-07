@@ -21,11 +21,19 @@
 
 #define INDICATOR_BRIGHTNESS 30
 
+//This is used to help replace the V in HSV with the indicator brightness
 #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override
 #define HSV_OVERRIDE(hsv, Override) HSV_OVERRIDE_HELP(hsv,Override)
 
-#define RIGHT_ZERO 35
+#define RIGHT_ZERO 36
 #define LEFT_ZERO 0
+
+#define HSV_BEAKL HSV_PURPLE
+#define HSV_QWERTY HSV_TEAL
+#define HSV_NUMPAD HSV_BLUE
+#define HSV_RAISE HSV_CORAL
+#define HSV_LOWER HSV_GOLDENROD
+#define HSV_ADJUST HSV_ORANGE
 
 /*
  * KEY ID
@@ -45,32 +53,38 @@
 
 // Light combinations
 #define SET_INDICATORS(hsv) \
-    {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
-    {35+1, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
+    {LEFT_ZERO, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
+    {RIGHT_ZERO, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
 #define SET_UNDERGLOW(hsv) \
-	{1, 6, hsv}, \
-    {35+1, 6,hsv}
+	{LEFT_ZERO+1, 6, hsv}, \
+    {RIGHT_ZERO+1, 6,hsv}
+
+// These are keys 17, 19, 20, 21, 24,25,26, 29, 30, 31 on the right hand
 #define SET_NUMPAD(hsv)     \
-	{35+15, 5, hsv},\
-	  {35+22, 3, hsv},\
-	  {35+27, 3, hsv}
+	{RIGHT_ZERO+16, 1, hsv},\
+	{RIGHT_ZERO+18, 3, hsv},\
+	{RIGHT_ZERO+23, 3, hsv},\
+	{RIGHT_ZERO+28, 3, hsv}
+//These are 13, 22, 23, 32, 33 on the left and the same on the right
 #define SET_NUMROW(hsv) \
-	{10, 2, hsv}, \
-		{20, 2, hsv}, \
-		{30, 2, hsv}, \
-	  {35+ 10, 2, hsv}, \
-	  {35+ 20, 2, hsv}, \
-	  {35+ 30, 2, hsv}
+	{LEFT_ZERO+12, 1, hsv}, \
+    {LEFT_ZERO+21, 2, hsv}, \
+    {LEFT_ZERO+31, 2, hsv}, \
+    {RIGHT_ZERO+12, 2, hsv}, \
+    {RIGHT_ZERO+21, 2, hsv}, \
+    {RIGHT_ZERO+31, 2, hsv}
 #define SET_INNER_COL(hsv)	\
 	{33, 4, hsv}, \
 	  {35+ 33, 4, hsv}
-
+//These are 9, 10, 11, 12
 #define SET_OUTER_COL(hsv) \
 	{7, 4, hsv}, \
 	  {35+ 7, 4, hsv}
+//These are 27 and 28
 #define SET_THUMB_CLUSTER(hsv) 	\
-	{25, 2, hsv}, \
-	  {35+ 25, 2, hsv}
+	{LEFT_ZERO+26, 2, hsv}, \
+	{RIGHT_ZERO+26, 2, hsv}
+
 #define SET_LAYER_ID(hsv) 	\
     {0, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}, \
     {35+1, 1, HSV_OVERRIDE_HELP(hsv, INDICATOR_BRIGHTNESS)}
@@ -79,16 +93,17 @@
 enum sofle_layers {
     _DEFAULTS = 0,
     _QWERTY = 0,
-    _BEAKL15 = 1,
-    _LOWER = 2,
-    _RAISE = 3,
-    _ADJUST = 4,
-    _NUMPAD = 5,
-    _SWITCH = 6
+    _BEAKL15,
+    _LOWER,
+    _RAISE,
+    _ADJUST,
+    _NUMPAD,
+    _SWITCH,
 };
 
 enum custom_keycodes {
     KC_QWERTY = SAFE_RANGE,
+    KC_BEAKL15,
     KC_LOWER,
     KC_RAISE,
     KC_ADJUST,
@@ -170,9 +185,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT(
   //,------------------------------------------------.                    ,---------------------------------------------------.
-  _______,  KC_F1,  KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,
+  _______,  _______,  _______, _______,_______,_______,                   _______,_______,_______,_______,_______,_______,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-  KC_GRV,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   _______,
+  KC_GRV,   KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,                        KC_F6,    KC_F7,    KC_F8,    KC_F9, KC_F10, _______,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
   _______,  KC_NO,  KC_NO,   KC_NO,   KC_WH_U, KC_PGUP,                   KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT, KC_NO,   _______,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
@@ -224,7 +239,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
   [_ADJUST] = LAYOUT(
   //,------------------------------------------------.                    ,---------------------------------------------------.
-  EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
   QK_BOOT, XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
@@ -245,7 +260,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * | trans|      |      |      |      |      |-------|    |-------|   +  |   1  |   2  |   3  |   \  | Shift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | Bspc | WIN  |LOWER | Enter| /Space  /       \Enter \  |SPACE | 0    |  .   | RAlt |
+ *            | Bspc | WIN  |LOWER | Enter| /Space  /       \Enter \  |SPACE | TRANS|  0   | . |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -259,17 +274,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,_______,   _______,KC_PLUS, KC_P1,  KC_P2,   KC_P3,   KC_SLSH, _______,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-              _______, OSM(MOD_MEH), _______, _______, _______,   _______, _______,  KC_P0,   KC_PDOT, _______
+              _______, OSM(MOD_MEH), _______, _______, _______,   _______, _______,  _______, KC_P0,   KC_PDOT
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
 ),
 
 /* SWITCH
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |KB_RBT|      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |KB_RBT| qwer | BEAKL|      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | qwer | BEAKL|      |      |      |      |                    |numpad| low  | raise| adj  |      |QK_BOOT|
+ * |      |DEF(Q)|DEF(B)|     |      |      |                     |numpad| low  | raise| adj  |      |QK_BOOT|
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |DEF(Q)|DEF(B)|      |      |      |      |-------.    ,-------|      |      |      |      |      |EE_CLR|
+ * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |EE_CLR|
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * | SLEEP|      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -280,11 +295,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // layer switcher
 [_SWITCH] = LAYOUT(
   //,------------------------------------------------.                    ,---------------------------------------------------.
-  QK_RBT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX, XXXXXXX,
+  QK_RBT, KC_QWERTY, KC_BEAKL15, XXXXXXX, XXXXXXX, XXXXXXX,               XXXXXXX,   KC_NO,   KC_NO,   KC_NO, XXXXXXX, XXXXXXX,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-  TO(_QWERTY),TO(_BEAKL15), KC_NO,KC_NO,KC_NO,KC_NO,                      TO(_NUM),TO(_LOWER), TO(_RAISE), TO(_adj),   KC_NO,   QK_BOOT,
+  KC_NO, TO(_QWERTY),TO(_BEAKL15), KC_NO, KC_NO, KC_NO,                   TO(_NUMPAD),TO(_LOWER), TO(_RAISE), TO(_ADJUST),   KC_NO,   QK_BOOT,
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
-  DF(_QWERTY),DF(_BEAKL15), KC_NO,   KC_NO,   KC_NO,   KC_NO,              KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   EE_CLR,
+  KC_NO,  KC_NO,     KC_NO,   KC_NO,   KC_NO,   KC_NO,                     KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   EE_CLR,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
   KC_SYSTEM_SLEEP,KC_NO,KC_NO,KC_NO,  KC_NO,   KC_NO, KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
@@ -301,67 +316,82 @@ char layer_state_str[70];
 // QWERTY,
 // Light on inner column and underglow
 const rgblight_segment_t PROGMEM layer_qwerty_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_RED)
+  SET_LAYER_ID(HSV_QWERTY),
+  SET_THUMB_CLUSTER(HSV_QWERTY)
 
 );
 
-// _NUM,
+//BEAKL15
+// Light on inner column and underglow
+const rgblight_segment_t PROGMEM layer_beakl_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+  SET_LAYER_ID(HSV_BEAKL),
+  SET_THUMB_CLUSTER(HSV_BEAKL)
+
+);
+
+// _LOWER,
 // Light on outer column and underglow
-const rgblight_segment_t PROGMEM layer_num_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_TEAL)
+const rgblight_segment_t PROGMEM layer_lower_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+	SET_LAYER_ID(HSV_LOWER)
 
 );
-// _SYMBOL,
+// _RAISE,
 // Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_symbol_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_BLUE)
-
+const rgblight_segment_t PROGMEM layer_raise_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+	//SET_LAYER_ID(HSV_BLUE)
+    SET_LAYER_ID(HSV_RAISE)
     );
-// _COMMAND,
+// _ADJUST,
 // Light on inner column and underglow
-const rgblight_segment_t PROGMEM layer_command_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-  SET_LAYER_ID(HSV_PURPLE)
+const rgblight_segment_t PROGMEM layer_adjust_lights[] = RGBLIGHT_LAYER_SEGMENTS(
+  SET_LAYER_ID(HSV_ADJUST)
 );
 
 //_NUMPAD
 const rgblight_segment_t PROGMEM layer_numpad_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_INDICATORS(HSV_ORANGE),
-    SET_UNDERGLOW(HSV_ORANGE),
-	SET_NUMPAD(HSV_BLUE),
-    {7, 4, HSV_ORANGE},
-    {25, 2, HSV_ORANGE},
-    {35+6, 4, HSV_ORANGE},
-    {35+25, 2, HSV_ORANGE}
+	SET_LAYER_ID(HSV_NUMPAD),
+    SET_UNDERGLOW(HSV_NUMPAD),
+	SET_NUMPAD(HSV_BLUE)
     );
 // _SWITCHER   // light up top row
 const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMENTS(
-	SET_LAYER_ID(HSV_GREEN),
-	SET_NUMROW(HSV_GREEN)
+	//SET_LAYER_ID(HSV_GREEN),
+	SET_LAYER_ID(HSV_YELLOW),
+	{LEFT_ZERO+12, 2, HSV_QWERTY},
+	{LEFT_ZERO+20, 2, HSV_BEAKL},
+	{RIGHT_ZERO+33, 1, HSV_NUMPAD},
+	{RIGHT_ZERO+30, 1, HSV_LOWER},
+	{RIGHT_ZERO+23, 1, HSV_RAISE},
+	{RIGHT_ZERO+20, 1, HSV_ADJUST}
 );
 
+//There must be a layer of RGB defined for each layer, otherwise layer switching crashes.
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     layer_qwerty_lights,
-	layer_num_lights,// overrides layer 1
-	layer_symbol_lights,
-    layer_command_lights,
+    layer_beakl_lights,
+	layer_lower_lights,
+	layer_raise_lights,
+    layer_adjust_lights,
 	layer_numpad_lights,
 	layer_switcher_lights  // Overrides other layers
+
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
+   	rgblight_set_layer_state(1, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_BEAKL15));
 
-	rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
-	rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
-	rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
-	rgblight_set_layer_state(4, layer_state_cmp(state, _NUMPAD));
-	rgblight_set_layer_state(5, layer_state_cmp(state, _SWITCH));
+	rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
+	rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
+	rgblight_set_layer_state(4, layer_state_cmp(state, _ADJUST));
+	rgblight_set_layer_state(5, layer_state_cmp(state, _NUMPAD));
+	rgblight_set_layer_state(6, layer_state_cmp(state, _SWITCH));
+
     return state;
 }
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-
 	rgblight_mode(10);// haven't found a way to set this in a more useful way
 
 }
@@ -370,13 +400,56 @@ void keyboard_post_init_user(void) {
 #ifdef OLED_ENABLE
 
 static void render_logo(void) {
-    static const char PROGMEM qmk_logo[] = {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
-        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
-        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
+//    static const char PROGMEM qmk_logo[] = {
+//        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
+//        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
+//        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
+//    };
+//
+//    oled_write_P(qmk_logo, false);
+
+    static const char PROGMEM persimmon_logo[] = {
+// 'persimmon-pixel-art-8bit-brik-bin-food-fruit-persimmon-pixel-pixel-art-5a24f9bcf6c96a8d29720bf4', 128x36px
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40,
+0x40, 0x40, 0x40, 0x40, 0x00, 0x00, 0x00, 0x04, 0x40, 0x44, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x04, 0x04, 0x00, 0x00, 0x00, 0x20, 0x20, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x02, 0x22, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
+0x00, 0x02, 0x02, 0x02, 0x00, 0x10, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x80, 0x81, 0x80, 0x90, 0x90, 0x80, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x09, 0x09, 0x01, 0x00, 0x80,
+0x80, 0x80, 0x00, 0x00, 0x00, 0x00, 0x80, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x40, 0x40, 0x00, 0x48, 0x48, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x40, 0x04, 0x04, 0x04, 0x40, 0x00, 0x40, 0x40, 0x40,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x20, 0x00, 0x20, 0x20, 0x24, 0x24,
+0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+0x02, 0x02, 0x02, 0x22, 0x02, 0x02, 0x22, 0x22, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10,
+0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x12, 0x12, 0x10, 0x10, 0x10, 0x10, 0x00, 0x00, 0x00, 0x01,
+0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x80, 0x80, 0x91, 0x81, 0x91, 0x81, 0x81, 0x91, 0x90,
+0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x00, 0x00, 0x08, 0x09, 0x09,
+0x08, 0x08, 0x88, 0x80, 0x08, 0x00, 0x80, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x48, 0x40, 0x40, 0x40, 0x40, 0x48, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04,
+0x04, 0x44, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x44, 0x04, 0x00, 0x40, 0x40, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x20, 0x20, 0x20, 0x20, 0x20, 0x24, 0x04,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x02, 0x22, 0x00, 0x02, 0x02, 0x02,
+0x02, 0x22, 0x02, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x10, 0x10, 0x10, 0x12, 0x12, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x11, 0x90, 0x80, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x09, 0x01, 0x88, 0x80,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x08, 0x08, 0x00, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x40, 0x44, 0x04, 0x00, 0x00, 0x00, 0x00, 0x04, 0x04, 0x04, 0x04, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x04, 0x04, 0x04, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x02, 0x02, 0x02, 0x02, 0x00, 0x00, 0x00, 0x00,
+0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+
     };
 
-    oled_write_P(qmk_logo, false);
+    oled_write_raw_P(persimmon_logo, sizeof(persimmon_logo));
 }
 
 static void print_status_narrow(void) {
@@ -393,19 +466,28 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("Qwrt"), false);
             break;
+        case _BEAKL15:
+            oled_write_ln_P(PSTR("BEAK"), false); //Only 4 characters or the line overruns and text positioning gets weird
+            break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
     oled_write_P(PSTR("\n\n"), false);
     // Print current layer
     oled_write_ln_P(PSTR("LAYER"), false);
+
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
+            oled_write_P(PSTR("Qwrt\n"), false);
+            break;
+        case _BEAKL15:
+            oled_write_P(PSTR("BEAKL\n"), false);
+            break;
         case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
+            oled_write_P(PSTR("Raise\n"), false);
             break;
         case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
+            oled_write_P(PSTR("Lower\n"), false);
             break;
         case _ADJUST:
             oled_write_P(PSTR("Adj\n"), false);
@@ -417,7 +499,7 @@ static void print_status_narrow(void) {
             oled_write_P(PSTR("Swit\n"), false);
             break;
         default:
-            oled_write_ln_P(PSTR("Undef"), false);
+            oled_write_ln_P(PSTR("Undef\n"), false);
     }
 }
 
@@ -444,6 +526,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_QWERTY:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_QWERTY);
+                //layer_move(_QWERTY);
+            }
+            return false;
+        case KC_BEAKL15:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_BEAKL15);
+                //layer_move(_BEAKL15);
             }
             return false;
         case KC_LOWER:
