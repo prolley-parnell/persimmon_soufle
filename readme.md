@@ -11,3 +11,8 @@ TO DO:
 - Add an indicator for capslock
 - Add an interesting display on the follower screen - Bongocat or personal animation
 - Add a boot splash of a persimmon
+
+## Links
+
+[OLED Editor](https://joric.github.io/qle/)
+I found this link very useful for making my own logo using the mouse and pasting it into the correct format
