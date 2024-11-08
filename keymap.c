@@ -170,7 +170,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
   KC_CAPS,  KC_C,   KC_I,    KC_E,    KC_A,   KC_COMM,                     KC_DOT,    KC_H,   KC_T,    KC_S,    KC_N,    KC_Q,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-  KC_LSFT,  KC_G,   KC_X,    KC_J,    KC_K,   KC_MINS,  KC_MUTE,  KC_MPLY, KC_SLSH,    KC_M,   KC_L,    KC_P,   KC_V,   KC_RSFT,
+  KC_LSFT,  KC_G,   KC_X,    KC_J,    KC_K,   KC_MINS,  KC_MUTE,  KC_MPLY, KC_SLSH,    KC_R,   KC_M,    KC_F,   KC_P,   KC_RSFT,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
                  KC_TAB, KC_LOPT, KC_LOWER, KC_LCMD,  KC_SPC ,     KC_ENT, KC_BSPC , KC_RAISE, KC_ROPT, KC_RCTL
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
@@ -236,9 +236,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | QK_BOOT|      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |UG_TOGG|hue^ |sat ^ | bri ^|      |COLEMAK|-------.   ,-------|desk <|      |      |desk >|      |      |
+ * |UG_TOGG|hue^ |sat ^ | bri ^|      |      |-------.   ,-------|desk <|      |      |desk >|      |      |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * | mode | hue dn|sat d|bri dn|      |QWERTY|-------|    |-------|      | PREV | PLAY | NEXT |      |      |
+ * | mode | hue dn|sat d|bri dn| ENGRAMMER|QWERTY|-------|    |-------|      | PREV | PLAY | NEXT |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
