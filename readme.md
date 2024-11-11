@@ -16,3 +16,5 @@ TO DO:
 
 [OLED Editor](https://joric.github.io/qle/)
 I found this link very useful for making my own logo using the mouse and pasting it into the correct format
+
+Engrammer layout copied from [sunaku/engrammer](https://github.com/sunaku/engrammer) 
