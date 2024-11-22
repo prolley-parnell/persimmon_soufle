@@ -71,7 +71,7 @@
 	//#define RGBLED_SPLIT
 	#define RGBLED_SPLIT { 36, 36 } // haven't figured out how to use this yet //tooler
 
-	//#define RGBLED_NUM 30
+	#define RGBLED_NUM 72
     #define RGBLIGHT_LIMIT_VAL 120
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
