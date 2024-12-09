@@ -47,6 +47,7 @@
 //#endif
 
 #ifdef RGBLIGHT_ENABLE
+    #define USB_MAX_POWER_CONSUMPTION 500
     #undef RGBLED_NUM
 
 	//#define RGBLIGHT_EFFECT_BREATHING
@@ -60,19 +61,16 @@
 	//#define RGBLIGHT_EFFECT_ALTERNATING
 	//#define RGBLIGHT_EFFECT_TWINKLE
 
-    //#define RGBLED_NUM 72
-
     // this to flip right side effects, make same direction on both sides. 36 = indicator LED. But underglow looks very different.
     //#define RGBLIGHT_LED_MAP { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37 }
 
     // use key columns and backlight LEDs. Cool solid color on both sides. Use it.
     //#define RGBLIGHT_LED_MAP { 0, 6, 17, 29, 34, 22, 10, 11, 1, 2, 3, 4, 5, 7, 8, 9, 21, 23, 12, 13, 14, 15, 16, 18, 19, 20, 33, 35, 24, 25, 26, 27, 28, 30, 31, 32, 36, 66, 55, 43, 38, 50, 62, 61, 71, 70, 69, 68, 67, 65, 64, 63, 51, 49, 60, 59, 58, 57, 56, 54, 53, 52, 39, 37, 48, 47, 46, 45, 44, 42, 41, 40 }
 
-	//#define RGBLED_SPLIT
 	#define RGBLED_SPLIT { 36, 36 } // haven't figured out how to use this yet //tooler
 
-	#define RGBLED_NUM 72
-    #define RGBLIGHT_LIMIT_VAL 120
+	//#define RGBLED_NUM 72
+    #define RGBLIGHT_LIMIT_VAL 110
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
@@ -87,13 +85,14 @@
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
+    #define USB_MAX_POWER_CONSUMPTION 500
     #define RGB_MATRIX_KEYPRESSES // reacts to keypresses
     // #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
     #define RGB_MATRIX_SLEEP // turn off effects when suspended
     #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
     #define RGB_MATRIX_LED_PROCESS_LIMIT (RGB_MATRIX_LED_COUNT + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
-    #define RGB_MATRIX_LED_FLUSH_LIMIT 16 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
-    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+    #define RGB_MATRIX_LED_FLUSH_LIMIT 20 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
+    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 110 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
 
     //#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_GRADIENT_LEFT_RIGHT
 
