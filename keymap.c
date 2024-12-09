@@ -99,8 +99,8 @@
 
 enum sofle_layers {
     _DEFAULTS = 0,
-    _QWERTY = 0,
-    _ENGRAMMER,
+    _ENGRAMMER = 0,
+    _QWERTY,
     _LOWER,
     _RAISE,
     _ADJUST,
@@ -109,13 +109,14 @@ enum sofle_layers {
 };
 
 enum custom_keycodes {
-    KC_QWERTY = SAFE_RANGE,
-    KC_ENGRAMMER,
-    KC_LOWER,
+    KC_LOWER = SAFE_RANGE,
     KC_RAISE,
     KC_ADJUST,
     KC_D_MUTE
 };
+
+#define KC_QWERTY PDF(_QWERTY)
+#define KC_ENGRAMMER PDF(_ENGRAMMER)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
@@ -500,18 +501,6 @@ bool oled_task_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_QWERTY:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
-                //layer_move(_QWERTY);
-            }
-            return false;
-        case KC_ENGRAMMER:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_ENGRAMMER);
-                //layer_move(_ENGRAMMER);
-            }
-            return false;
         case KC_LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
