@@ -19,7 +19,7 @@
 
 #include QMK_KEYBOARD_H
 
-#define INDICATOR_BRIGHTNESS 30
+#define INDICATOR_BRIGHTNESS 20
 
 //This is used to help replace the V in HSV with the indicator brightness
 #define HSV_OVERRIDE_HELP(h, s, v, Override) h, s , Override
@@ -401,7 +401,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-	rgblight_mode(10);// haven't found a way to set this in a more useful way
+    rgblight_mode(10);// haven't found a way to set this in a more useful way
 
 }
 #endif
