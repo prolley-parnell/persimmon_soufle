@@ -1,6 +1,6 @@
 ---
-layout: default 
-title: Home
+layout: index
+title: Introduction
 ---
 
 Welcome to the documentation for this repo.
