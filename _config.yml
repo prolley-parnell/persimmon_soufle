@@ -1,0 +1,12 @@
+title: Homepage
+logo:
+description: Dev log for Persie's Sofle V2.1
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-minimal
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "default"
