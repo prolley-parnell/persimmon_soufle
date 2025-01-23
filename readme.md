@@ -1,5 +1,6 @@
 # Persimmon's Keymap for the Sofle RGB V2.1
 
+This is the docs branch and you can view the website here: [https://prolley-parnell.github.io/persimmon_soufle/](https://prolley-parnell.github.io/persimmon_soufle/)
 Features:
 
 - Various layers, RAISE, ADJUST, LOWER, NUMPAD

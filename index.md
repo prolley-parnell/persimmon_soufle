@@ -27,3 +27,5 @@ gardener like many burnt-out PhD students dream of doing, or do I try to find ou
 place? I wanted to find a project I could take full ownership of, modify and personalise in my own way and use all my accumulated skills for fun.  
 
 If you're still interested in the process, then read on. The story is told in a mostly chronological manner. It will have an endpoint where I stop updating the documentation and just make changes to the code itself as needed.
+
+Use the sidebar on the left to find pages such as [Hardware](https://prolley-parnell.github.io/persimmon_soufle/hardware.html), [Software](https://prolley-parnell.github.io/persimmon_soufle/software.html), [Keycaps](https://prolley-parnell.github.io/persimmon_soufle/keycaps.html), and [Casing](https://prolley-parnell.github.io/persimmon_soufle/casing.html). 

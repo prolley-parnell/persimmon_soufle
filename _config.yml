@@ -1,12 +1,5 @@
-title: Homepage
+title: Persimmon Soufle
 logo:
-description: Dev log for Persie's Sofle V2.1
-show_downloads: false
+description: A maker guide for the Sofle V2.1 RGB Split KeyboardI
 google_analytics:
-theme: jekyll-theme-minimal
-defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-    values:
-      layout: "default"
+remote_theme: fongandrew/hydeout
