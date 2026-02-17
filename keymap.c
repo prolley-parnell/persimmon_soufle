@@ -376,8 +376,8 @@ const rgblight_segment_t PROGMEM layer_switcher_lights[] = RGBLIGHT_LAYER_SEGMEN
 
 //There must be a layer of RGB defined for each layer, otherwise layer switching crashes.
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_qwerty_lights,
     layer_engrammer_lights,
+    layer_qwerty_lights,
 	layer_lower_lights,
 	layer_raise_lights,
     layer_adjust_lights,
@@ -387,9 +387,8 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 );
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-	rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
-   	rgblight_set_layer_state(1, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_ENGRAMMER));
-
+    rgblight_set_layer_state(0, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_ENGRAMMER));
+ 	rgblight_set_layer_state(1, layer_state_cmp(state, _DEFAULTS) && layer_state_cmp(default_layer_state,_QWERTY));
 	rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
 	rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
 	rgblight_set_layer_state(4, layer_state_cmp(state, _ADJUST));
@@ -429,8 +428,8 @@ static void render_logo(void) {
 
 static void print_status_narrow(void) {
     // Print current mode
-    oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("Persimmon\n"), false);
+    oled_write_P(PSTR("\n"), false);
+    oled_write_ln_P(PSTR("P\ne\nr\ns\ni\ne\n"), false);
 
     oled_write_ln_P(PSTR(""), false);
 
@@ -559,9 +558,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 //				break;
 //			default:
             if (clockwise) {
-                tap_code(KC_LEFT);
-            } else {
                 tap_code(KC_RIGHT);
+            } else {
+                tap_code(KC_LEFT);
             }
 //				break;
 		//}

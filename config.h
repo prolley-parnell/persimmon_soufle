@@ -45,6 +45,10 @@
 //#define RGBLED_NUM 36
 //#define RGB_MATRIX_LED_COUNT RGBLED_NUM
 //#endif
+#ifdef ENCODER_RESOLUTION
+    #undef ENCODER_RESOLUTION
+    #define ENCODER_RESOLUTION 5
+#endif
 
 #ifdef RGBLIGHT_ENABLE
     #define USB_MAX_POWER_CONSUMPTION 500
@@ -85,14 +89,14 @@
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-    #define USB_MAX_POWER_CONSUMPTION 500
+    #define USB_MAX_POWER_CONSUMPTION 400
     #define RGB_MATRIX_KEYPRESSES // reacts to keypresses
     // #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
     #define RGB_MATRIX_SLEEP // turn off effects when suspended
     #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
     #define RGB_MATRIX_LED_PROCESS_LIMIT (RGB_MATRIX_LED_COUNT + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
     #define RGB_MATRIX_LED_FLUSH_LIMIT 20 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
-    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 110 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 130 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
 
     //#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_GRADIENT_LEFT_RIGHT
 
